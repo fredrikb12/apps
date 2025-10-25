@@ -32,6 +32,7 @@ export default function Todo(todo: Todo) {
             IMPORTANT
           </p>
         )}
+        {!todo.urgent && !todo.important && <p style={{ padding: "12px" }}></p>}
       </div>
       <button>
         <Link
