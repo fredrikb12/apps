@@ -1,14 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useTodos } from "../../store/useTodos";
+import { useTodos } from "../../../store/useTodos";
 import { z } from "zod";
 import type React from "react";
-import TodoList from "../../features/todos/TodoList";
+import TodoList from "../../../features/todos/TodoList";
 
 const todoFilterSearchSchema = z.object({
   filters: z.array(z.enum(["urgent", "important"])).default([]),
 });
 
-export const Route = createFileRoute("/todos/")({
+export const Route = createFileRoute("/apps/todos/")({
   component: RouteComponent,
   validateSearch: todoFilterSearchSchema,
 });

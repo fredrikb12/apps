@@ -36,7 +36,7 @@ export default function Todo(todo: Todo) {
       <button>
         <Link
           style={{ textDecoration: "none", color: "black" }}
-          to="/todos/$todoId/edit"
+          to="/apps/todos/$todoId/edit"
           params={{ todoId: todo.id }}
           search={{ from: location.pathname }}
         >
