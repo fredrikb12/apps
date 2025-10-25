@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppsIndexRouteImport } from './routes/apps/index'
 import { Route as AppsTodosIndexRouteImport } from './routes/apps/todos/index'
 import { Route as AppsTodosCreateRouteImport } from './routes/apps/todos/create'
 import { Route as AppsTodosTodoIdEditRouteImport } from './routes/apps/todos/$todoId.edit'
@@ -17,6 +18,11 @@ import { Route as AppsTodosTodoIdEditRouteImport } from './routes/apps/todos/$to
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppsIndexRoute = AppsIndexRouteImport.update({
+  id: '/apps/',
+  path: '/apps/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppsTodosIndexRoute = AppsTodosIndexRouteImport.update({
@@ -37,12 +43,14 @@ const AppsTodosTodoIdEditRoute = AppsTodosTodoIdEditRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/apps': typeof AppsIndexRoute
   '/apps/todos/create': typeof AppsTodosCreateRoute
   '/apps/todos': typeof AppsTodosIndexRoute
   '/apps/todos/$todoId/edit': typeof AppsTodosTodoIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/apps': typeof AppsIndexRoute
   '/apps/todos/create': typeof AppsTodosCreateRoute
   '/apps/todos': typeof AppsTodosIndexRoute
   '/apps/todos/$todoId/edit': typeof AppsTodosTodoIdEditRoute
@@ -50,6 +58,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/apps/': typeof AppsIndexRoute
   '/apps/todos/create': typeof AppsTodosCreateRoute
   '/apps/todos/': typeof AppsTodosIndexRoute
   '/apps/todos/$todoId/edit': typeof AppsTodosTodoIdEditRoute
@@ -58,14 +67,21 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/apps'
     | '/apps/todos/create'
     | '/apps/todos'
     | '/apps/todos/$todoId/edit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/apps/todos/create' | '/apps/todos' | '/apps/todos/$todoId/edit'
+  to:
+    | '/'
+    | '/apps'
+    | '/apps/todos/create'
+    | '/apps/todos'
+    | '/apps/todos/$todoId/edit'
   id:
     | '__root__'
     | '/'
+    | '/apps/'
     | '/apps/todos/create'
     | '/apps/todos/'
     | '/apps/todos/$todoId/edit'
@@ -73,6 +89,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppsIndexRoute: typeof AppsIndexRoute
   AppsTodosCreateRoute: typeof AppsTodosCreateRoute
   AppsTodosIndexRoute: typeof AppsTodosIndexRoute
   AppsTodosTodoIdEditRoute: typeof AppsTodosTodoIdEditRoute
@@ -85,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apps/': {
+      id: '/apps/'
+      path: '/apps'
+      fullPath: '/apps'
+      preLoaderRoute: typeof AppsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/apps/todos/': {
@@ -113,6 +137,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppsIndexRoute: AppsIndexRoute,
   AppsTodosCreateRoute: AppsTodosCreateRoute,
   AppsTodosIndexRoute: AppsTodosIndexRoute,
   AppsTodosTodoIdEditRoute: AppsTodosTodoIdEditRoute,
