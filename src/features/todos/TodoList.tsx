@@ -2,7 +2,7 @@ import { getRouteApi } from "@tanstack/react-router";
 import { useTodos } from "../../store/useTodos";
 import Todo from "../../features/todos/Todo";
 
-const routeApi = getRouteApi("/apps/todos/");
+const routeApi = getRouteApi("/todos/");
 
 export default function TodoList() {
   const { filters } = routeApi.useSearch();

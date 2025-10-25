@@ -1,10 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useTodos } from "../../../store/useTodos";
+import { useTodos } from "../../store/useTodos";
 import React from "react";
-import CheckboxInput from "../../../components/CheckboxInput";
-import TextInput from "../../../components/TextInput";
+import CheckboxInput from "../../components/CheckboxInput";
+import TextInput from "../../components/TextInput";
 
-export const Route = createFileRoute("/apps/todos/create")({
+export const Route = createFileRoute("/todos/create")({
   component: RouteComponent,
 });
 

@@ -10,89 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AppsIndexRouteImport } from './routes/apps/index'
-import { Route as AppsTodosIndexRouteImport } from './routes/apps/todos/index'
-import { Route as AppsTodosCreateRouteImport } from './routes/apps/todos/create'
-import { Route as AppsTodosTodoIdEditRouteImport } from './routes/apps/todos/$todoId.edit'
+import { Route as TodosIndexRouteImport } from './routes/todos/index'
+import { Route as TodosCreateRouteImport } from './routes/todos/create'
+import { Route as TodosTodoIdEditRouteImport } from './routes/todos/$todoId.edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppsIndexRoute = AppsIndexRouteImport.update({
-  id: '/apps/',
-  path: '/apps/',
+const TodosIndexRoute = TodosIndexRouteImport.update({
+  id: '/todos/',
+  path: '/todos/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppsTodosIndexRoute = AppsTodosIndexRouteImport.update({
-  id: '/apps/todos/',
-  path: '/apps/todos/',
+const TodosCreateRoute = TodosCreateRouteImport.update({
+  id: '/todos/create',
+  path: '/todos/create',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppsTodosCreateRoute = AppsTodosCreateRouteImport.update({
-  id: '/apps/todos/create',
-  path: '/apps/todos/create',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppsTodosTodoIdEditRoute = AppsTodosTodoIdEditRouteImport.update({
-  id: '/apps/todos/$todoId/edit',
-  path: '/apps/todos/$todoId/edit',
+const TodosTodoIdEditRoute = TodosTodoIdEditRouteImport.update({
+  id: '/todos/$todoId/edit',
+  path: '/todos/$todoId/edit',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/apps': typeof AppsIndexRoute
-  '/apps/todos/create': typeof AppsTodosCreateRoute
-  '/apps/todos': typeof AppsTodosIndexRoute
-  '/apps/todos/$todoId/edit': typeof AppsTodosTodoIdEditRoute
+  '/todos/create': typeof TodosCreateRoute
+  '/todos': typeof TodosIndexRoute
+  '/todos/$todoId/edit': typeof TodosTodoIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/apps': typeof AppsIndexRoute
-  '/apps/todos/create': typeof AppsTodosCreateRoute
-  '/apps/todos': typeof AppsTodosIndexRoute
-  '/apps/todos/$todoId/edit': typeof AppsTodosTodoIdEditRoute
+  '/todos/create': typeof TodosCreateRoute
+  '/todos': typeof TodosIndexRoute
+  '/todos/$todoId/edit': typeof TodosTodoIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/apps/': typeof AppsIndexRoute
-  '/apps/todos/create': typeof AppsTodosCreateRoute
-  '/apps/todos/': typeof AppsTodosIndexRoute
-  '/apps/todos/$todoId/edit': typeof AppsTodosTodoIdEditRoute
+  '/todos/create': typeof TodosCreateRoute
+  '/todos/': typeof TodosIndexRoute
+  '/todos/$todoId/edit': typeof TodosTodoIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/apps'
-    | '/apps/todos/create'
-    | '/apps/todos'
-    | '/apps/todos/$todoId/edit'
+  fullPaths: '/' | '/todos/create' | '/todos' | '/todos/$todoId/edit'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/apps'
-    | '/apps/todos/create'
-    | '/apps/todos'
-    | '/apps/todos/$todoId/edit'
-  id:
-    | '__root__'
-    | '/'
-    | '/apps/'
-    | '/apps/todos/create'
-    | '/apps/todos/'
-    | '/apps/todos/$todoId/edit'
+  to: '/' | '/todos/create' | '/todos' | '/todos/$todoId/edit'
+  id: '__root__' | '/' | '/todos/create' | '/todos/' | '/todos/$todoId/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AppsIndexRoute: typeof AppsIndexRoute
-  AppsTodosCreateRoute: typeof AppsTodosCreateRoute
-  AppsTodosIndexRoute: typeof AppsTodosIndexRoute
-  AppsTodosTodoIdEditRoute: typeof AppsTodosTodoIdEditRoute
+  TodosCreateRoute: typeof TodosCreateRoute
+  TodosIndexRoute: typeof TodosIndexRoute
+  TodosTodoIdEditRoute: typeof TodosTodoIdEditRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -104,32 +78,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/apps/': {
-      id: '/apps/'
-      path: '/apps'
-      fullPath: '/apps'
-      preLoaderRoute: typeof AppsIndexRouteImport
+    '/todos/': {
+      id: '/todos/'
+      path: '/todos'
+      fullPath: '/todos'
+      preLoaderRoute: typeof TodosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/apps/todos/': {
-      id: '/apps/todos/'
-      path: '/apps/todos'
-      fullPath: '/apps/todos'
-      preLoaderRoute: typeof AppsTodosIndexRouteImport
+    '/todos/create': {
+      id: '/todos/create'
+      path: '/todos/create'
+      fullPath: '/todos/create'
+      preLoaderRoute: typeof TodosCreateRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/apps/todos/create': {
-      id: '/apps/todos/create'
-      path: '/apps/todos/create'
-      fullPath: '/apps/todos/create'
-      preLoaderRoute: typeof AppsTodosCreateRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/apps/todos/$todoId/edit': {
-      id: '/apps/todos/$todoId/edit'
-      path: '/apps/todos/$todoId/edit'
-      fullPath: '/apps/todos/$todoId/edit'
-      preLoaderRoute: typeof AppsTodosTodoIdEditRouteImport
+    '/todos/$todoId/edit': {
+      id: '/todos/$todoId/edit'
+      path: '/todos/$todoId/edit'
+      fullPath: '/todos/$todoId/edit'
+      preLoaderRoute: typeof TodosTodoIdEditRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -137,10 +104,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AppsIndexRoute: AppsIndexRoute,
-  AppsTodosCreateRoute: AppsTodosCreateRoute,
-  AppsTodosIndexRoute: AppsTodosIndexRoute,
-  AppsTodosTodoIdEditRoute: AppsTodosTodoIdEditRoute,
+  TodosCreateRoute: TodosCreateRoute,
+  TodosIndexRoute: TodosIndexRoute,
+  TodosTodoIdEditRoute: TodosTodoIdEditRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

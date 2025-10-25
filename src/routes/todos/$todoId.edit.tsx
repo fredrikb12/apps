@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
-import { useTodos } from "../../../store/useTodos";
+import { useTodos } from "../../store/useTodos";
 
 const todoEditSearchSchema = z.object({
   from: z.string().optional(),
@@ -8,7 +8,7 @@ const todoEditSearchSchema = z.object({
 
 // type TodoEditSearch = z.infer<typeof todoEditSearchSchema>;
 
-export const Route = createFileRoute("/apps/todos/$todoId/edit")({
+export const Route = createFileRoute("/todos/$todoId/edit")({
   component: RouteComponent,
   validateSearch: todoEditSearchSchema,
 });
