@@ -67,11 +67,15 @@ export const useTodos = create<TodosState>()((set) => {
     },
     changeTodo(todo) {
       set((state) => {
-        return {
+        const newState = {
           todos: state.todos.map((t) => {
             if (t.id === todo.id) return todo;
             return t;
           }),
+        };
+        saveTodos(newState.todos);
+        return {
+          todos: newState.todos,
         };
       });
     },

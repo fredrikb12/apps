@@ -1,0 +1,21 @@
+.grid {
+  grid-template-columns: 100px 200px 200px;
+  grid-template-rows: 100px 200px 200px;
+  display: grid;
+  gap: 20px;
+  background-color: gray;
+  width: fit-content;
+}
+
+.gridItem {
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  &:first-child {
+    background-color: unset;
+  }
+}

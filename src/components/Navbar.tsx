@@ -6,6 +6,7 @@ export default function Navbar() {
       <div style={{ display: "flex", gap: "12px" }}>
         <Link to="/">Home</Link>
         <Link to="/todos">Todos</Link>
+        <Link to="/grid">Grid view</Link>
       </div>
       <hr></hr>
     </nav>
